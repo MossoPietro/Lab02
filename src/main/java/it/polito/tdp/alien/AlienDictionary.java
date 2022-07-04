@@ -14,21 +14,20 @@ public class AlienDictionary {
 	public void addWord(String parola, String traduzione) {
 		Word temp = new Word(parola, traduzione);
 		if (dizionario.contains(temp)) {
-			dizionario.get(dizionario.indexOf(temp)).setTraduzione(traduzione);
+			dizionario.get(dizionario.indexOf(temp)).addTraduzione(traduzione);
 		} else {
 			dizionario.add(temp);
 		}
 	}
 	
-	public String translate(String parola) {
+	public List<String> translate(String parola) {
 		Word temp = new Word(parola);
-		String risultato;
+		
 		if (dizionario.contains(temp)) {
-			risultato = dizionario.get(dizionario.indexOf(temp)).getTraduzione();
+			return dizionario.get(dizionario.indexOf(temp)).getTraduzione();
 		} else {
-			risultato = null;
+			return null;
 		}
-		return risultato;
 	}
 	
 	public void reset() {

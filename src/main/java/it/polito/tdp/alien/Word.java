@@ -1,27 +1,34 @@
 package it.polito.tdp.alien;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Word {
 
 	private String parolaAliena;
-	private String traduzione;
+	private List<String> traduzioni;
 	
 	public Word(String parolaAliena, String traduzione) {
 		this.parolaAliena = parolaAliena;
-		this.traduzione = traduzione;
+		this.traduzioni = new ArrayList<String>();
+		this.traduzioni.add(traduzione);
 	}
 
 	public Word(String parolaAliena) {
 		this.parolaAliena = parolaAliena;
+		this.traduzioni = new ArrayList<String>();
 	}
 
-	public String getTraduzione() {
-		return traduzione;
+	public List<String> getTraduzione() {
+		return traduzioni;
 	}
 
-	public void setTraduzione(String traduzione) {
-		this.traduzione = traduzione;
+	public void addTraduzione(String traduzione) {
+		if (traduzioni.contains(traduzione)) {
+			return;
+		}
+		this.traduzioni.add(traduzione);
 	}
 
 	@Override

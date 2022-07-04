@@ -5,6 +5,8 @@
 package it.polito.tdp.alien;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -62,12 +64,19 @@ public class FXMLController {
         		return;
     		}
     		
-    		String traduzione = dizionario.translate(parolaAliena);
-    		if (traduzione == null) {
+    		List<String> traduzioni = new ArrayList<String>();
+    		traduzioni = dizionario.translate(parolaAliena);
+    		
+    		if (traduzioni == null) {
     			txtRisultato.setText("La parola digitata non ha ancora una traduzione!");
     			return;
     		}
-    		txtRisultato.setText(traduzione);
+    		
+    		String output = "";
+    		for (String s : traduzioni) {
+    			output += s + "\n";
+    		}
+    		txtRisultato.setText(output);
     		
     	} else if (inputSeparato.length == 2) {
     		String parolaAliena = inputSeparato[0];
