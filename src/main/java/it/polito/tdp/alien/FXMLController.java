@@ -59,13 +59,18 @@ public class FXMLController {
     	if (inputSeparato.length == 1) {
     		String parolaAliena = inputSeparato[0];
     		
-    		if (!parolaAliena.matches("[a-zA-Z]+")) {
-    			txtRisultato.setText("Inserire solo caratteri alfabetici");
+    		if (!parolaAliena.matches("[a-zA-Z?]+")) {
+    			txtRisultato.setText("Inserire solo caratteri alfabetici o punti interrogativi");
         		return;
     		}
     		
     		List<String> traduzioni = new ArrayList<String>();
-    		traduzioni = dizionario.translate(parolaAliena);
+    		
+    		if (parolaAliena.matches("[a-zA-Z?]+") && !parolaAliena.matches("[a-zA-Z]+")) {
+    			traduzioni = dizionario.translateWildCard(parolaAliena);
+    		} else {
+    			traduzioni = dizionario.translate(parolaAliena);
+    		}
     		
     		if (traduzioni == null) {
     			txtRisultato.setText("La parola digitata non ha ancora una traduzione!");

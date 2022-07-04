@@ -48,4 +48,8 @@ public class Word {
 		return Objects.equals(parolaAliena, other.parolaAliena);
 	}
 
+	public boolean confrontoWildCard(String parolaAliena2) {
+		return this.parolaAliena.matches(parolaAliena2);
+	}
+
 }

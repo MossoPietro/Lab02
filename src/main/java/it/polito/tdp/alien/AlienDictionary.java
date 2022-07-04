@@ -33,5 +33,19 @@ public class AlienDictionary {
 	public void reset() {
 		dizionario.clear();
 	}
+
+	public List<String> translateWildCard(String parolaAliena) {
+		
+		parolaAliena = parolaAliena.replace("?", ".");
+		List<String> elenco = new ArrayList<String>();
+		
+		for (Word w : dizionario) {
+			if (w.confrontoWildCard(parolaAliena)) {
+				elenco.addAll(w.getTraduzione());
+			}
+		}
+		return elenco;
+		
+	}
 	
 }
